@@ -178,14 +178,22 @@ static void *server_spin_up(void *args) {
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-    if (CS104_Slave_isRunning(slave) == false) {
-        spdlog::error("Failed to start server on port {:d}", params->port);
+    auto attempt = 5;
+    while (true) {
+        if (CS104_Slave_isRunning(slave) == false) {
+            spdlog::error("Failed {:d} to start server on port {:d}", 6 - attempt, params->port);
+            Thread_sleep(500);
 
-        CS104_Slave_destroy(slave);
-        Thread_sleep(500);
-        running = false;
-    } else {
-        spdlog::info("Server started on port {:d}", params->port);
+            if (attempt == 0) {
+                CS104_Slave_destroy(slave);
+                running = false;
+                break;
+            }
+            attempt--;
+        } else {
+            spdlog::info("Server started on port {:d}", params->port);
+            break;
+        }
     }
 
     while (running) {
