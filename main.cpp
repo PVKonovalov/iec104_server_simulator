@@ -52,7 +52,7 @@ int main(const int argc, char **argv) {
 
     // Command line option variables
     int outstations = 1;
-    std::string host = "0.0.0.0";
+    std::string host = "127.0.0.1";
     int start_port = 2404;
     int start_common_address = 1;
     int period_sec = 0;
