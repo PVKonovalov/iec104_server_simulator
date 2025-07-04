@@ -28,4 +28,4 @@ apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /root
 
-COPY --from=cpp_builder /app/build/simulator_iec104_server .
+COPY --from=cpp_builder /app/build/iec104_server_simulator .
