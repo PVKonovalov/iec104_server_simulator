@@ -82,7 +82,7 @@ config_t *get_config(const std::string &configFilename) {
     spdlog::info("Read {:d} rows from {}", n, std::string(configFilename));
 
     auto *config = static_cast<config_t *>(malloc(sizeof(config_t))); // put config on heap
-  //  config->len = n;
+    //  config->len = n;
 
     auto _ioas = static_cast<int *>(malloc(sizeof(int) * n));
     auto _vals = static_cast<int *>(malloc(sizeof(int) * n));
@@ -104,7 +104,7 @@ config_t *get_config(const std::string &configFilename) {
         }
     }
     config->len = j;
-    spdlog::info("Use {:d} points",j);
+    spdlog::info("Use {:d} points", j);
     config->ioas = _ioas;
     config->vals = _vals;
     config->devs = _devs;

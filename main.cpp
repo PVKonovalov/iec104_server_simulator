@@ -104,7 +104,7 @@ int main(const int argc, char **argv) {
     const config_t *config = get_config(config_file);
 
     // Initialise pseudo-time
-    init_time(time_rate, 0);
+    init_time(time_rate);
 
     spdlog::info("Starting {:d} outstations, {:d} points, listening on {}:{:d}-{:d}", outstations, config->len, host.c_str(), start_port, start_port + outstations - 1);
 

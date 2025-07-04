@@ -4,18 +4,10 @@ project(iec104_server_simulator)
 set(ABSL_PROPAGATE_CXX_STD ON)
 set(CMAKE_CXX_STANDARD 20)
 set(LIB_60870 vendor/lib60870-C)
-set(LIB_YAML vendor/yaml-cpp)
 set(LIB_SPDLOG vendor/spdlog)
 
 find_package(Threads REQUIRED)
 find_package(CURL REQUIRED)
-
-add_custom_command(
-        OUTPUT include/version.h
-        COMMAND sh -c ./generate.sh
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-)
-
 
 add_executable(
         iec104_server_simulator
@@ -41,13 +33,11 @@ include_directories(
         include
         ${LIB_60870}/src/inc/api
         ${LIB_60870}/src/hal/inc
-        ${LIB_YAML}/include/yaml-cpp
         ${LIB_SPDLOG}/include
 
 )
 
 add_subdirectory(${LIB_60870})
-add_subdirectory(${LIB_YAML})
 add_subdirectory(${LIB_SPDLOG})
 
 link_directories(${CMAKE_BINARY_DIR})
@@ -60,7 +50,6 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
             iec104_server_simulator
             PUBLIC Threads::Threads
             lib60870
-            yaml-cpp
             spdlog
             ${COCOA_LIBRARY}
             ${SECURITY_LIBRARY}
@@ -71,7 +60,6 @@ else ()
             iec104_server_simulator
             PUBLIC Threads::Threads
             lib60870
-            yaml-cpp
             spdlog
     )
 endif ()

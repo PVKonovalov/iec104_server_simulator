@@ -12,25 +12,19 @@ static long *time_offset_ptr = nullptr;
 static long *start_time_ptr = nullptr;
 
 
-void init_time(const int *time_rate, const long *start_time) {
+void init_time(const int *time_rate) {
     time_rate_ptr = static_cast<int *>(malloc(sizeof(int)));
     time_offset_ptr = static_cast<long *>(malloc(sizeof(long)));
     start_time_ptr = static_cast<long *>(malloc(sizeof(long)));
 
-    if (start_time == nullptr) {
-        *time_offset_ptr = 0;
-        *start_time_ptr = time(nullptr);
-    } else {
-        *time_offset_ptr = time(nullptr) - *start_time;
-        *start_time_ptr = *start_time;
-    }
-    spdlog::info("Start time is: {:d}", *start_time_ptr);
+    *time_offset_ptr = 0;
+    *start_time_ptr = time(nullptr);
+
     if (time_rate == nullptr) {
         *time_rate_ptr = 1;
     } else {
         *time_rate_ptr = *time_rate;
     }
-    spdlog::info("Time multiplier: {:d}", *time_rate_ptr);
 }
 
 long get_time() {
@@ -38,7 +32,7 @@ long get_time() {
         time_rate_ptr == nullptr ||
         start_time_ptr == nullptr) {
         spdlog::info("Initialising time");
-        init_time(nullptr, nullptr);
+        init_time(nullptr);
     }
 
     //get current time
