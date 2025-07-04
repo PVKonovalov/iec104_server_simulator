@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(simulator_iec104_server)
+project(iec104_server_simulator)
 
 set(ABSL_PROPAGATE_CXX_STD ON)
 set(CMAKE_CXX_STANDARD 20)
@@ -18,7 +18,7 @@ add_custom_command(
 
 
 add_executable(
-        simulator_iec104_server
+        iec104_server_simulator
         main.cpp
         include/nlohmann/json.hpp
         include/flags/flags.h
@@ -30,7 +30,7 @@ add_executable(
         src/config.h
         src/dummy_readings.cpp
         src/dummy_readings.h
-        src/simulator_iec104_server.h
+        src/iec104_server_simulator.h
         src/timestamps.cpp
         src/timestamps.h
         src/utils.cpp
@@ -57,7 +57,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     find_library(SECURITY_LIBRARY Security ONLY)
     find_library(RESOLV_LIBRARY Resolv ONLY)
     target_link_libraries(
-            simulator_iec104_server
+            iec104_server_simulator
             PUBLIC Threads::Threads
             lib60870
             yaml-cpp
@@ -68,7 +68,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     )
 else ()
     target_link_libraries(
-            simulator_iec104_server
+            iec104_server_simulator
             PUBLIC Threads::Threads
             lib60870
             yaml-cpp

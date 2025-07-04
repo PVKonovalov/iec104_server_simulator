@@ -12,7 +12,7 @@
 #include "hal_thread.h"
 #include "hal_time.h"
 
-#include "src/simulator_iec104_server.h"
+#include "src/iec104_server_simulator.h"
 #include "src/dummy_readings.h"
 #include "src/utils.h"
 #include "src/callbacks.h"

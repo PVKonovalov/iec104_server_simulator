@@ -39,3 +39,12 @@
 
 # debug information files
 *.dwo
+
+.idea
+iec104_server_simulator
+# CMake files
+cmake-build-debug/
+build/
+
+# MacOS
+.DS_Store

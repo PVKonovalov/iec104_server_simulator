@@ -1,0 +1,14 @@
+services:
+  iec104-server-simulator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iec104-server-simulator
+    restart: always
+    volumes:
+      - ./config/:/config/
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "2404:2404"
+    command: ./iec104_server_simulator -i 10  -o 1 -f /config/config.csv
