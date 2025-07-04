@@ -63,7 +63,7 @@ bool connectionRequestHandler(void *parameter, const char *ipAddress) {
 bool interrogationHandler(void *parameter, IMasterConnection connection, const CS101_ASDU asdu, uint8_t qoi) {
     const auto *params = static_cast<_params *>(parameter);
     const int common_address = params->common_address;
-    const bool test_flags = params->test_flags;
+    const bool test_flags = false;
     const int num_dummy_readings = params->num_dummy_readings;
     int *ioas = params->ioas;
     int *types_gi = params->types_gi;

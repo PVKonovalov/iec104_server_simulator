@@ -45,32 +45,23 @@ int main(const int argc, char **argv) {
         {"host", required_argument, nullptr, 'h'},
         {"port", required_argument, nullptr, 'p'},
         {"common_address", required_argument, nullptr, 'c'},
-        {"strict", no_argument, nullptr, 'S'},
-        {"verbose", no_argument, nullptr, 'v'},
-        {"test_flags_off", no_argument, nullptr, 'T'},
         {"interval", required_argument, nullptr, 'i'},
         {"config_file", required_argument, nullptr, 'f'},
-        {"start_time", required_argument, nullptr, 's'},
-        {"time_rate", required_argument, nullptr, 'm'},
         {nullptr, 0, nullptr, 0}
     };
 
     // Command line option variables
-    int outstations = 5;
+    int outstations = 1;
     std::string host = "0.0.0.0";
     int start_port = 2404;
     int start_common_address = 1;
-    bool strict = false;
     int period_sec = 0;
-    bool test_flags = true;
     std::string config_file;
     int *time_rate = nullptr;
-    long *start_time = nullptr;
-
 
     // Get command line options
     do {
-        const auto short_options = "Ho:h:p:c:SvTi:f:s:m:";
+        const auto short_options = "H:o:h:p:c:i:f:";
         next_option = getopt_long(argc, argv, short_options, long_options, nullptr);
         switch (next_option) {
             case 'H':
@@ -88,30 +79,15 @@ int main(const int argc, char **argv) {
             case 'c':
                 start_common_address = atoi(optarg);
                 break;
-            case 'v':
-                printf("Using verbose mode (not implemented)\n");
-                break;
-            case 'S':
-                strict = true;
-                break;
-            case 'T':
-                test_flags = false;
-                break;
             case 'i':
                 period_sec = atoi(optarg);
                 break;
             case 'f':
                 config_file = std::string(optarg);
                 break;
-            case 's': // TODO: Check value within range
-                start_time = static_cast<long *>(malloc(sizeof(long)));
-                *start_time = atoi(optarg);
+            case -1:
                 break;
-            case 'm': // TODO: Check value within range
-                time_rate = static_cast<int *>(malloc(sizeof(int)));
-                *time_rate = atoi(optarg);
-                break;
-            case '?':
+            default:
                 print_usage();
                 exit(0);
         }
@@ -128,7 +104,7 @@ int main(const int argc, char **argv) {
     const config_t *config = get_config(config_file);
 
     // Initialise pseudo-time
-    init_time(time_rate, start_time);
+    init_time(time_rate, 0);
 
     spdlog::info("Starting {:d} outstations, {:d} points, listening on {}:{:d}-{:d}", outstations, config->len, host.c_str(), start_port, start_port + outstations - 1);
 
@@ -142,8 +118,6 @@ int main(const int argc, char **argv) {
         params[i]->host = reinterpret_cast<char *>(&host);
         params[i]->server_number = i;
         params[i]->period_sec = period_sec;
-        params[i]->strict = strict;
-        params[i]->test_flags = test_flags;
         params[i]->num_dummy_readings = config->len;
         params[i]->ioas = config->ioas;
         params[i]->vals = config->vals;
@@ -208,10 +182,6 @@ static void *server_spin_up(void *args) {
     if (CS104_Slave_isRunning(slave) == false) {
         spdlog::error("Failed to start server on port {:d}", params->port);
 
-        if (params->strict) {
-            spdlog::warn("Exiting");
-            exit(0);
-        }
         CS104_Slave_destroy(slave);
         Thread_sleep(500);
         running = false;
@@ -265,7 +235,7 @@ static CS104_Slave server_init(_params *params, _connection_state *connection_st
 }
 
 static void send_point(CS101_AppLayerParameters alParams, _params *params, int i, CS104_Slave slave, CS101_CauseOfTransmission cot) {
-    CS101_ASDU newAsdu = CS101_ASDU_create(alParams, false, cot, 0, params->common_address, params->test_flags, false);
+    CS101_ASDU newAsdu = CS101_ASDU_create(alParams, false, cot, 0, params->common_address, false, false);
 
     InformationObject io = make_reading(
         params->vals[i],

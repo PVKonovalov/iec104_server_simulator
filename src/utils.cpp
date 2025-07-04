@@ -15,7 +15,7 @@ void print_usage() {
     const std::string usage =
             "\nSimulator IEC104 server\n"
             "Simulates n IEC104 outstations\n\n"
-            "usage: simulator_iec104_server [options]\n"
+            "usage: iec104_server_simulator [options]\n"
             "\toptions:\n"
             "\t-o, --outstations [int]\t\tSpecify number of outstations (default 5)\n"
             "\t-p, --port [int]\t\tPort number to start from (default 2404)\n"
@@ -23,11 +23,6 @@ void print_usage() {
             "\t-c, --common_address [int]\tCommon Address number to start from (default 1)\n"
             "\t-i, --interval [int]\t\tPeriodic transmission interval in seconds (default off)\n"
             "\t-f, --config_file [str]\t\tSpecify a csv file of measurement points\n"
-            "\t-v, --verbose\t\t\tOutput additional logging information to STDOUT\n"
-            "\t-s, --start_time [int]\t\tSpecify a start time in unix time (default system time)\n"
-            "\t-m, --time_rate [int]\t\tSpecify a time multiplier (default 1)\n"
-            "\t-S, --strict\t\t\tFail if any expected port is unavailable (default off)\n"
-            "\t-T, --test_flags_off\t\tDisable test flags in outgoing IEC104 messages (default enabled)\n"
             "\t-H, --help\t\t\tDisplay instructions and exit\n";
 
     std::cout << usage << std::endl;

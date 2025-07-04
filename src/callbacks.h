@@ -18,8 +18,6 @@ typedef struct _params
     int common_address;
     int server_number;
     int period_sec;
-    bool strict;
-    bool test_flags;
     int num_dummy_readings;
     int *ioas;
     int *types;
