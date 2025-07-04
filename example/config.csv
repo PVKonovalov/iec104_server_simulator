@@ -1,0 +1,25 @@
+Information Object Address, Base Value, Deviation Value, ASDU type (Spontaneous), ASDU type (Interrogation)
+1,1,2,M_ME_TF_1,M_ME_NC_1
+2,2,2,M_ME_TF_1,M_ME_NC_1
+3,3,2,M_ME_TF_1,M_ME_NC_1
+4,4,2,M_ME_TF_1,M_ME_NC_1
+5,5,2,M_ME_TF_1,M_ME_NC_1
+6,6,2,M_ME_TF_1,M_ME_NC_1
+7,7,2,M_ME_TF_1,M_ME_NC_1
+8,8,2,M_ME_TF_1,M_ME_NC_1
+9,9,2,M_ME_TF_1,M_ME_NC_1
+10,10,2,M_ME_TF_1,M_ME_NC_1
+20,1,1,M_SP_TB_1,M_SP_NA_1
+21,0,1,M_SP_TB_1,M_SP_NA_1
+22,1,1,M_SP_TB_1,M_SP_NA_1
+23,0,1,M_SP_TB_1,M_SP_NA_1
+24,1,1,M_SP_TB_1,M_SP_NA_1
+25,0,1,M_SP_TB_1,M_SP_NA_1
+26,1,1,M_SP_TB_1,M_SP_NA_1
+27,0,1,M_SP_TB_1,M_SP_NA_1
+28,1,1,M_SP_TB_1,M_SP_NA_1
+29,0,1,M_SP_TB_1,M_SP_NA_1
+30,1,1,M_SP_TB_1,M_SP_NA_1
+
+
+
