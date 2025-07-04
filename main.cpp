@@ -122,7 +122,6 @@ int main(const int argc, char **argv) {
         params[i]->ioas = config->ioas;
         params[i]->vals = config->vals;
         params[i]->deviations = config->devs;
-
         params[i]->types = config->types;
         params[i]->types_gi = config->types_gi;
 
