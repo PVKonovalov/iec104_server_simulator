@@ -52,7 +52,7 @@ int main(const int argc, char **argv) {
 
     // Command line option variables
     int outstations = 1;
-    std::string host = "127.0.0.1";
+    std::string host = "0.0.0.0";
     int start_port = 2404;
     int start_common_address = 1;
     int period_sec = 0;
@@ -115,7 +115,7 @@ int main(const int argc, char **argv) {
         params[i] = static_cast<_params *>(malloc(sizeof(_params)));
         params[i]->port = i + start_port;
         params[i]->common_address = i + start_common_address;
-        params[i]->host = reinterpret_cast<char *>(&host);
+        params[i]->host = const_cast<char *>(host.c_str());
         params[i]->server_number = i;
         params[i]->period_sec = period_sec;
         params[i]->num_dummy_readings = config->len;
