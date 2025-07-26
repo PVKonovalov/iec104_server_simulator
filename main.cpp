@@ -20,6 +20,8 @@
 #include "src/timestamps.h"
 #include "spdlog/spdlog.h"
 
+#define VERSION "0.1"
+
 int running = true;
 
 extern "C" void signalHandler(int signum) {
@@ -93,6 +95,8 @@ int main(const int argc, char **argv) {
         }
     } while (next_option != -1);
 
+
+    spdlog::info("IEC 60870-5-104 RTU (server) simulator version {}", VERSION);
 
     if (config_file.empty()) {
         spdlog::error("Missing configuration file name");
