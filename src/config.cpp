@@ -73,7 +73,7 @@ config_t *get_config(const std::string &configFilename) {
     int n = 0;
 
     while (!feof(config_fd)) {
-        if (int rv = fscanf(config_fd, "%d,%d,%d,%[^,],%[^,\n]", &(p + n)->ioa, &(p + n)->val, &(p + n)->dev, (p + n)->type, (p + n)->type_gi); rv != NUM_COLUMNS) {
+        if (int rv = fscanf(config_fd, "%d,%f,%f,%[^,],%[^,\n]", &(p + n)->ioa, &(p + n)->val, &(p + n)->dev, (p + n)->type, (p + n)->type_gi); rv != NUM_COLUMNS) {
             break;
         }
         p = static_cast<columns_s *>(realloc(p, sizeof(columns_s) * (++n + 1)));
@@ -85,8 +85,8 @@ config_t *get_config(const std::string &configFilename) {
     //  config->len = n;
 
     auto _ioas = static_cast<int *>(malloc(sizeof(int) * n));
-    auto _vals = static_cast<int *>(malloc(sizeof(int) * n));
-    auto _devs = static_cast<int *>(malloc(sizeof(int) * n));
+    auto _vals = static_cast<float *>(malloc(sizeof(int) * n));
+    auto _devs = static_cast<float *>(malloc(sizeof(int) * n));
     auto _types = static_cast<int *>(malloc(sizeof(int) * n));
     auto _types_gi = static_cast<int *>(malloc(sizeof(int) * n));
 

@@ -244,7 +244,7 @@ static CS104_Slave server_init(_params *params, _connection_state *connection_st
 static void send_point(CS101_AppLayerParameters alParams, _params *params, int i, CS104_Slave slave, CS101_CauseOfTransmission cot) {
     CS101_ASDU newAsdu = CS101_ASDU_create(alParams, false, cot, 0, params->common_address, false, false);
 
-    InformationObject io = make_reading(
+    InformationObject io = makeReading(
         params->vals[i],
         params->deviations[i],
         static_cast<TypeID>(params->types[i]),

@@ -5,7 +5,10 @@
 #define DUMMY_READINGS_H
 
 
+InformationObject makeReading(float baseVal, float deviation, TypeID type, int ioa);
 
-InformationObject make_reading(int val, int deviation, TypeID type, int ioa);
+float floatVal(float baseVal, float deviation);
+
+float intVal(float baseVal, float deviation);
 
 #endif

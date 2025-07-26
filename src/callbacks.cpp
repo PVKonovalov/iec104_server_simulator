@@ -67,8 +67,8 @@ bool interrogationHandler(void *parameter, IMasterConnection connection, const C
     const int num_dummy_readings = params->num_dummy_readings;
     int *ioas = params->ioas;
     int *types_gi = params->types_gi;
-    const int *vals = params->vals;
-    const int *deviations = params->deviations;
+    const float *vals = params->vals;
+    const float *deviations = params->deviations;
 
     spdlog::info("Port {:d} interrogation for group {:d}", params->port, qoi);
 
@@ -83,7 +83,7 @@ bool interrogationHandler(void *parameter, IMasterConnection connection, const C
             const CS101_ASDU newAsdu = CS101_ASDU_create(alParams, false, CS101_COT_INTERROGATED_BY_STATION,
                                                          0, common_address, test_flags, false);
 
-            InformationObject io = make_reading(vals[i], deviations[i], static_cast<TypeID>(types_gi[i]), ioas[i]);
+            InformationObject io = makeReading(vals[i], deviations[i], static_cast<TypeID>(types_gi[i]), ioas[i]);
 
             if (io != nullptr) {
                 CS101_ASDU_addInformationObject(newAsdu, io);
