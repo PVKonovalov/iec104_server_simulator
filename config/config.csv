@@ -2,7 +2,7 @@ Information Object Address, Base Value, Deviation Value, ASDU type (Spontaneous)
 1,1,2,M_ME_TF_1,M_ME_NC_1
 2,2,2,M_ME_TF_1,M_ME_NC_1
 3,3,2,M_ME_TF_1,M_ME_NC_1
-4,4,2,M_ME_TF_1,M_ME_NC_1
+4,50,0.05,M_ME_TF_1,M_ME_NC_1
 5,5,2,M_ME_TF_1,M_ME_NC_1
 6,6,2,M_ME_TF_1,M_ME_NC_1
 7,7,2,M_ME_TF_1,M_ME_NC_1

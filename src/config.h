@@ -11,8 +11,8 @@ enum value_types {
 
 typedef struct columns_s {
     int ioa;
-    int val;
-    int dev;
+    float val;
+    float dev;
     char type[15];
     char type_gi[15];
 } columns_s;
@@ -21,8 +21,8 @@ typedef struct columns_s {
 typedef struct config_t {
     int len;
     int *ioas;
-    int *vals;
-    int *devs;
+    float *vals;
+    float *devs;
     int *types;
     int *types_gi;
 } config_t;
