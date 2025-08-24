@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.5)
+
 project(iec104_server_simulator)
 
 set(ABSL_PROPAGATE_CXX_STD ON)
@@ -27,6 +28,7 @@ add_executable(
         src/timestamps.h
         src/utils.cpp
         src/utils.h
+        include/helpers/iec104.h
 )
 
 include_directories(

@@ -28,13 +28,12 @@ typedef struct _params {
 
 bool connectionRequestHandler(void *parameter, const char *ipAddress);
 
-bool
-interrogationHandler(void *parameter, IMasterConnection connection, CS101_ASDU asdu, uint8_t qoi);
+bool interrogationHandler(void *parameter, IMasterConnection connection, CS101_ASDU asdu, uint8_t qoi);
 
-void
-connectionEventHandler(void *parameter, IMasterConnection con, CS104_PeerConnectionEvent event);
+void connectionEventHandler(void *parameter, IMasterConnection con, CS104_PeerConnectionEvent event);
 
-bool
-clockSyncHandler(void *parameter, IMasterConnection connection, CS101_ASDU asdu, CP56Time2a newTime);
+bool clockSyncHandler(void *parameter, IMasterConnection connection, CS101_ASDU asdu, CP56Time2a newTime);
+
+bool asduHandler(void *parameter, IMasterConnection connection, CS101_ASDU asdu);
 
 #endif

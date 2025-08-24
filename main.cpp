@@ -239,8 +239,11 @@ static CS104_Slave server_init(_params *params, _connection_state *connection_st
     /* set handler to track connection events (optional) */
     CS104_Slave_setConnectionEventHandler(slave, connectionEventHandler, connection_state);
 
-    /* set the callback handler for the clock synchronization command */
-    CS104_Slave_setClockSyncHandler(slave, clockSyncHandler, args);
+    // /* set the callback handler for the clock synchronization command */
+    // CS104_Slave_setClockSyncHandler(slave, clockSyncHandler, args);
+
+    /* set the callback handler for received ASDUs */
+    CS104_Slave_setASDUHandler(slave, asduHandler, nullptr);
 
     return slave;
 }
